@@ -6,7 +6,7 @@ import Dock from "./components/Dock";
 import ScrollToggle from "./components/ScrollToggle";
 import "./App.css";
 import Project from "./sections/Project";
-import Services from "./sections/services";
+import Services from "./sections/Services";
 import Tech from "./sections/Tech";
 import Process from "./sections/Process";
 import WhyChooseUs from "./sections/WhyChooseUs";
