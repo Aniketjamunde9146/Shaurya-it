@@ -35,8 +35,8 @@ export default function OurTeam() {
         </div>
 
         <div className="person-info">
-          <h3>Aniket Jamunde</h3>
-          <span>Founder & Full-Stack Developer</span>
+          <h3>Aniket Jamunde </h3>
+          <span>Mobile App Developer | Flutter | Cross Platform Developer</span>
           <p>
             I design and develop premium web and mobile applications with
             an Apple-inspired UI, focusing on performance, scalability,
@@ -60,8 +60,7 @@ export default function OurTeam() {
         <div className="person-info">
            <h3>Priti Surase</h3>
           Co-Founder
-          <span>Co-Founder &
-UI / UX Designer</span>
+          <span>Full Stack Web Developer | React Developer | UI & UX </span>
           <p>
             I craft modern, intuitive interfaces and user journeys that
             feel smooth, minimal, and aligned with iOS & macOS design

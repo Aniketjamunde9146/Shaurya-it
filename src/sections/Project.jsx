@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Download } from "lucide-react";
+import { ExternalLink, Github, Download, ChevronDown, ChevronUp, Star } from "lucide-react";
 import { projects } from "../data/projects";
 
 export default function Projects() {
+  const [expandedProject, setExpandedProject] = useState(null);
+
+  const toggleExpand = (index) => {
+    setExpandedProject(expandedProject === index ? null : index);
+  };
+
   return (
     <motion.section
-    id="projects-section"
+      id="projects-section"
       className="projects-section"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      {/* This div calls your saved CSS class. 
-        It ensures the technical grid stays consistent 
-      */}
+      {/* Grid background */}
       <div className="grid-background" />
 
       <div className="section-header">
@@ -67,6 +71,7 @@ export default function Projects() {
             }}
             whileHover={{ y: -10, borderColor: "rgba(255, 77, 77, 0.3)" }}
           >
+            {/* Project Thumbnail */}
             <div className="project-thumb">
               <img src={project.mockup} alt={project.name} />
               <div className="card-status">
@@ -75,25 +80,77 @@ export default function Projects() {
               </div>
             </div>
 
+            {/* Project Meta */}
             <div className="project-meta">
               <span className="project-badge">{project.category}</span>
               <h3>{project.name}</h3>
               <p>{project.desc}</p>
+
+              {/* Client Requirements */}
+              <div className="client-requirements">
+                <p className="requirements-label">Client Requirements:</p>
+                <ul className="requirements-list">
+                  {project.clientRequirements.map((req, idx) => (
+                    <li key={idx}>✓ {req}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
+            {/* Review Toggle Button */}
+            <motion.button
+              onClick={() => toggleExpand(i)}
+              className="review-toggle-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="toggle-text">
+                {expandedProject === i ? "Hide Review" : "View Client Review"}
+              </span>
+              {expandedProject === i ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </motion.button>
+
+            {/* Client Review - Expandable */}
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={
+                expandedProject === i
+                  ? { opacity: 1, height: "auto" }
+                  : { opacity: 0, height: 0 }
+              }
+              transition={{ duration: 0.3 }}
+              className="client-review"
+            >
+              <div className="review-content glass">
+                <div className="review-header">
+                  <div className="reviewer-info">
+                    <h4>{project.review.clientName}</h4>
+                    <p className="reviewer-role">{project.review.clientRole}</p>
+                  </div>
+                  <div className="review-rating">
+                    {[...Array(project.review.rating)].map((_, idx) => (
+                      <Star key={idx} size={14} className="star-filled" fill="currentColor" />
+                    ))}
+                  </div>
+                </div>
+                <p className="review-text">&quot;{project.review.text}&quot;</p>
+              </div>
+            </motion.div>
+
+            {/* Action Links */}
             <div className="project-actions compact">
               {project.links.view && (
-                <a href={project.links.view} target="_blank" rel="noreferrer" className="action-link">
+                <a href={project.links.view} target="_blank" rel="noreferrer" className="action-link" title="View Live">
                   <ExternalLink size={14} />
                 </a>
               )}
               {project.links.code && (
-                <a href={project.links.code} target="_blank" rel="noreferrer" className="action-link">
+                <a href={project.links.code} target="_blank" rel="noreferrer" className="action-link" title="View Code">
                   <Github size={14} />
                 </a>
               )}
               {project.links.apk && (
-                <a href={project.links.apk} target="_blank" rel="noreferrer" className="action-link">
+                <a href={project.links.apk} target="_blank" rel="noreferrer" className="action-link" title="Download APK">
                   <Download size={14} />
                 </a>
               )}
