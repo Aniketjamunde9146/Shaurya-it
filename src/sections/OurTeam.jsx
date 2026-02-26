@@ -13,7 +13,7 @@ const team = [
     skills: ["Flutter", "Dart", "Cross-Platform", "iOS & Android"],
     icons: [<Smartphone size={13} />, <Code2 size={13} />],
     links: { github: "#", linkedin: "#" },
-    stat: { label: "Apps Shipped", value: "30+" },
+    stat: { label: "Apps Shipped", value: "6+" },
   },
   {
     name: "Priti Surase",
@@ -24,7 +24,7 @@ const team = [
     skills: ["React", "Node.js", "UI & UX", "Full Stack"],
     icons: [<Palette size={13} />, <Globe size={13} />],
     links: { github: "#", linkedin: "#" },
-    stat: { label: "Sites Launched", value: "50+" },
+    stat: { label: "Sites Launched", value: "4+" },
   },
 ];
 
