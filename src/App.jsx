@@ -1,57 +1,65 @@
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 import Splash from "./components/Splash";
 import Navbar from "./components/Navbar";
-import Hero from "./sections/Hero";
 import Dock from "./components/Dock";
 import ScrollToggle from "./components/ScrollToggle";
-import "./App.css";
+import PopUp from "./components/PopUp";
+import Hero from "./sections/Hero";
 import Project from "./sections/Project";
 import Services from "./sections/Services";
 import Tech from "./sections/Tech";
 import Process from "./sections/Process";
+import OurTeam from "./sections/OurTeam";
 import WhyChooseUs from "./sections/WhyChooseUs";
 import Inquiry from "./sections/Inquiry";
 import Footer from "./sections/Footer";
-import OurTeam from "./sections/OurTeam";
-import PopUp from "./components/PopUp";
+import "./App.css";
+
+const SPLASH_DURATION = 3200;
 
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [openPopup, setOpenPopup] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2200);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setLoading(false), SPLASH_DURATION);
+    return () => clearTimeout(t);
   }, []);
 
-  if (loading) return <Splash />;
+  const openContact = () => setOpenPopup(true);
+  const closeContact = () => setOpenPopup(false);
 
   return (
-    <div className="app-container">
-      <Navbar onContactClick={() => setOpenPopup(true)} />
+    <>
+      <AnimatePresence mode="wait">
+        {loading && <Splash key="splash" />}
+      </AnimatePresence>
 
-      <ScrollToggle />
+      {!loading && (
+        <div className="app-root">
+          {/* Fixed UI */}
+          <Navbar onContactClick={openContact} />
+          <ScrollToggle />
+          <Dock onContactClick={openContact} />
 
-      {/* HERO BUTTON OPENS POPUP */}
-      <Hero onStartProject={() => setOpenPopup(true)} />
+          {/* Page sections */}
+          <main>
+            <Hero onStartProject={openContact} />
+            <Project/>
+            <Services />
+            <Tech />
+            <Process />
+            <OurTeam />
+            <WhyChooseUs />
+            <Inquiry />
+            <Footer />
+          </main>
 
-      <Project />
-      <Services />
-      <Tech />
-      <Process />
-      <OurTeam />
-      <WhyChooseUs />
-      <Inquiry />
-      <Footer />
-
-      {/* DOCK CONTACT OPENS POPUP */}
-      <Dock onContactClick={() => setOpenPopup(true)} />
-
-      {/* POPUP */}
-      <PopUp
-        isOpen={openPopup}
-        onClose={() => setOpenPopup(false)}
-      />
-    </div>
+          {/* Global contact popup */}
+          <PopUp isOpen={openPopup} onClose={closeContact} />
+        </div>
+      )}
+    </>
   );
 }
