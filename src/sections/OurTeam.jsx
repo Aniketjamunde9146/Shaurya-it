@@ -6,7 +6,7 @@ import { Github, Linkedin, Twitter, Globe, Code2, Smartphone, Palette } from "lu
 const team = [
   {
     name: "Aniket Jamunde",
-    role: "Co-Founder & Mobile Developer",
+    role: "Founder & Mobile Developer",
     photo: "/founder.png",
     bio: "I design and develop premium web and mobile applications with an Apple-inspired UI, focusing on performance, scalability, and clean user experience.",
     color: "#63d4ff",
