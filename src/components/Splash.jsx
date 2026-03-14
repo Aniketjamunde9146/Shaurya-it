@@ -56,6 +56,7 @@ export default function Splash({ onDone }) {
           font-family: 'DM Mono', monospace;
           cursor: none;
           overflow: hidden;
+          padding: 20px;
         }
 
         /* Interactive radial glow that follows mouse */
