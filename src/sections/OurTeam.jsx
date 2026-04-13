@@ -23,7 +23,7 @@ const team = [
     color: "#a855f7",
     skills: ["React", "Node.js", "UI & UX", "Full Stack"],
     icons: [<Palette size={13} />, <Globe size={13} />],
-    links: { github: "https://github.com/Sanketjamunde046/", linkedin: "" },
+    links: { github: "https://github.com/Sanketjamunde046/", linkedin: "https://www.linkedin.com/in/sanket-jamunde-a144343b0/" },
     stat: { label: "Sites Launched", value: "4+" },
   },
 ];
